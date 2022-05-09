@@ -1,37 +1,25 @@
 // import dayjs from 'dayjs'
-import styles from './Movie.module.scss'
-
 import { useMount, useState } from 'hooks'
-// import { getWeatherApi } from 'services/weather'
-// import { IWeatherAPIRes } from 'types/weather.d'
-// import WeatherItem from 'routes/Weathers/Item'
+import styles from './Movie.module.scss'
+import { LikeIcon, SearchIcon } from '../../assets/svgs'
+
 
 const Movie = () => {
-  const [data, setData] = useState<IWeatherAPIRes>()
 
-  useMount(() => {
-    getWeatherApi({
-      appid: '62ddf1108af7c922d3645ed650fe5ee9',
-      lat: 37.494958,
-      lon: 126.844128,
-      units: 'metric',
-    }).then((res) => {
-      setData(res.data)
-    })
-  })
-
-  if (!data) return null
-
+  const handleSerch = () => {
+    console.log('search')
+  }
+  const handleFavorites = () => {
+    console.log('favorit')
+  }
   return (
-    <section className={styles.weather}>
-      <h1>{data.city.name}</h1>
-      <div className={styles.forecast}>
-        <h2>Next forecast</h2>
-        <ul>
-          {data.list.map((item) => (
-            <WeatherItem key={item.dt_txt} item={item} />
-          ))}
-        </ul>
+    <section className={styles.movie}>
+      <div className={styles.movieInner}>
+        <h1>Search your favorit movies!</h1>
+        <div className={styles.bottomTabBar}>
+          <button type="button" onClick={handleSerch}><SearchIcon className={styles.search}>검색</SearchIcon></button>
+          <button type="button" onClick={handleFavorites}><LikeIcon className={styles.favorit}>즐겨찾기</LikeIcon></button>
+        </div>
       </div>
     </section>
   )

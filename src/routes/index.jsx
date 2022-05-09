@@ -1,6 +1,4 @@
-import styles from './Routes.module.scss'
-// import TodoList from './TodoList'
-// import Weather from './Weathers'
+// import styles from './Routes.module.scss'
 import {
   RecoilRoot,
   atom,
@@ -12,13 +10,8 @@ import Movie from './Movie'
 
 const App = () => {
   return (
-    // <div className={styles.app}>
-    //   {/* <TodoList /> */}
-    //   {/* <Weather /> */}
-    //   <Movie />
-    // </div>
     <RecoilRoot>
-      <Movie />
+      <Movie/>
     </RecoilRoot>
   )
 }
