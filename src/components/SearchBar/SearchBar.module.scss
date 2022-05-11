@@ -5,6 +5,7 @@
 .searchWrap {
   width: 100%;
   height: 40px;
+  margin-bottom: 20px;
 
   form {
     position: relative;
@@ -45,7 +46,6 @@
       width: 100%;
       height: 100%;
       padding: 0 48px 0 40px;
-      font-weight: bold;
       background: colors.$SEARCH_INPUT;
       border: 1px solid colors.$SEARCH_BORDER;
       border-radius: 6px;
@@ -57,35 +57,3 @@
   }
 }
 
-.movieList {
-  padding-top: 15px;
-
-  .item {
-    display: flex;
-  }
-
-  .image {
-    width: 40%;
-
-    img {
-      width: 100%;
-    }
-  }
-
-  .info {
-    width: 60%;
-    padding-left: 15px;
-
-    .title {
-      font-size: 20px;
-    }
-
-    .year {
-      font-size: 14px;
-    }
-
-    .type {
-      font-size: 14px;
-    }
-  }
-}

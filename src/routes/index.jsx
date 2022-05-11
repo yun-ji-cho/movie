@@ -1,8 +1,8 @@
 import Layout from 'components/Layout'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import { RecoilRoot } from 'recoil'
-import Home from './home'
-import Favorit from './favorite'
+import Home from './HomeSearch'
+import Favorit from './Favorite'
 
 const App = () => {
   return (

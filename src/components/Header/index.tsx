@@ -5,7 +5,7 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      <h1>Search your favorit movies!</h1>
+      <h1>FYFM</h1>
     </header>
   )
 }

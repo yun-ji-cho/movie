@@ -3,6 +3,9 @@
 @use '/src/styles/mixins/flexbox';
 @use '/src/styles/mixins/position';
 
-.wrapper {
-  background-color: rgb(243, 188, 188);
+.homeSearch {
+  h2 {
+    padding-bottom: 15px;
+    font-size: 18px;
+  }
 }
