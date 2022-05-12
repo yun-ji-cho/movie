@@ -3,18 +3,33 @@ import { useSearchParams } from 'react-router-dom'
 import styles from './SearchBar.module.scss'
 
 import { useMount, useState } from 'hooks'
+import { getMoviesApi } from 'services/movies'
+import { IMoviesAPIRes } from 'types/movies.d'
 import { SearchIcon, SearchReset } from 'assets/svgs'
 import { cx } from 'styles'
 
 
 const SearchBar = () => {
   const [searchParams] = useSearchParams()
-  const [searchInput, setSearchInput] = useState('')
+  const [data, setData] = useState<IMoviesAPIRes>()
+  const [searchInput, setSearchInput] = useState(searchParams.get('Title') ?? '')
 
   useMount(() => {
-    if (!lat || !lon) return
+    if (!searchInput) return
     handleSubmit()
   })
+
+  const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
+    e?.preventDefault()
+
+    if (!searchInput) return
+    getMoviesApi({
+      text : searchInput
+    }).then((res) => {
+      // setData(res.search)
+    })
+
+  }
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchInput(e.target.value)
@@ -22,10 +37,8 @@ const SearchBar = () => {
   const handleInputRemove = () => {
     setSearchInput('')
   }
-  const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
-    e?.preventDefault()
-    const words = e.tar 
-  }
+
+
   return (
     <div className={styles.searchWrap}>
       <form id="searchFrm" name="searchFrm" onSubmit={handleSubmit}>
@@ -52,7 +65,7 @@ const SearchBar = () => {
           ><SearchReset className={styles.icon}>Search Reset</SearchReset></button>
         }
       </form>
-
+      <div>{data ? data.Search.Title : 'Search Item'}</div>
     </div>
   )
 }
