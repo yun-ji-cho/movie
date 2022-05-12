@@ -26,9 +26,9 @@ const SearchBar = () => {
     getMoviesApi({
       text : searchInput
     }).then((res) => {
-      // setData(res.search)
+      console.log(res)
+      // setData(res)
     })
-
   }
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
