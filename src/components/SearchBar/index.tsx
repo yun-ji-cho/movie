@@ -12,7 +12,8 @@ import { cx } from 'styles'
 const SearchBar = () => {
   const [searchParams] = useSearchParams()
   const [data, setData] = useState<IMoviesAPIRes>()
-  const [searchInput, setSearchInput] = useState(searchParams.get('Title') ?? '')
+  const [searchInput, setSearchInput] = useState(searchParams.get('title') ?? '')
+  const [page, setPage] = useState(1)
 
   useMount(() => {
     if (!searchInput) return
@@ -24,10 +25,10 @@ const SearchBar = () => {
 
     if (!searchInput) return
     getMoviesApi({
+      page : 1,
       text : searchInput
     }).then((res) => {
-      console.log(res)
-      // setData(res)
+      setData(res)
     })
   }
 
@@ -65,7 +66,7 @@ const SearchBar = () => {
           ><SearchReset className={styles.icon}>Search Reset</SearchReset></button>
         }
       </form>
-      <div>{data ? data.Search.Title : 'Search Item'}</div>
+      {/* <div>{data ? data.Search.Title : 'Search Item'}</div> */}
     </div>
   )
 }

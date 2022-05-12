@@ -1,13 +1,14 @@
-interface ISearch {
-  Title: string;
-  Year: string;
+export interface ISearch {
+  title: string;
+  year: string;
   imdbID: string;
-  Type: string;
-  Poster: string;
+  type: string;
+  poster: string;
 }
 
 export interface IMoviesAPIRes {
-  Search: ISearch;
-  totalResults: string;
-  Response: string;
+  error?: string;
+  search: ISearch[];
+  totalResults: number;
+  response: Boolean;
 }
