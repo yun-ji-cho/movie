@@ -11,13 +11,11 @@ import { useMount, useUnmount } from 'react-use'
 // import BookmarkModal from 'components/BookmarkModal'
 import { SearchIcon } from 'assets/svgs'
 
-
-
 const Favorite = () => {
   return (
     <div className={styles.favorite}>
       <h2>내 즐겨찾기</h2>
-      <SearchBar/>
+      <SearchBar />
       <ul className={styles.favoriteList}>
         <li>아이템</li>
       </ul>

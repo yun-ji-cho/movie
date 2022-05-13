@@ -13,10 +13,14 @@ const Footer = () => {
     <nav>
       <ul className={styles.bottomTabBar}>
         <li>
-          <NavLink to='' className={({ isActive }) => cx(styles.search, { [styles.isActive]: isActive })}>Search</NavLink>
+          <NavLink to='' className={({ isActive }) => cx(styles.search, { [styles.isActive]: isActive })}>
+            Search
+          </NavLink>
         </li>
         <li>
-          <NavLink to='favorit' className={({ isActive }) => cx(styles.favorit, { [styles.isActive]: isActive })}>즐겨찾기</NavLink>
+          <NavLink to='favorit' className={({ isActive }) => cx(styles.favorit, { [styles.isActive]: isActive })}>
+            즐겨찾기
+          </NavLink>
         </li>
       </ul>
       {menu === 'favorit' && <Favorite />}

@@ -1,5 +1,5 @@
 {
-  "extends": ["airbnb", "airbnb/hooks", "react-app", "prettier"],
+  "extends": ["airbnb", "airbnb/hooks", "react-app", "prettier", "plugin:react/recommended", "plugin:prettier/recommended"],
   "env": {
     "browser": true,
     "jasmine": true,
@@ -80,6 +80,12 @@
         "jsx": "never",
         "ts": "never",
         "tsx": "never"
+      }
+    ],
+    "prettier/prettier": [
+      "error",
+      {
+          "endOfLine": "auto"
       }
     ]
   }

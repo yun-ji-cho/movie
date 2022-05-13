@@ -8,12 +8,11 @@ import { IMoviesAPIRes } from 'types/movies.d'
 import { SearchIcon, SearchReset } from 'assets/svgs'
 import { cx } from 'styles'
 
-
 const SearchBar = () => {
   const [searchParams] = useSearchParams()
   const [data, setData] = useState<IMoviesAPIRes>()
   const [searchInput, setSearchInput] = useState(searchParams.get('title') ?? '')
-  const [page, setPage] = useState(1)
+  const [pageNum, setPageNum] = useState(1)
 
   useMount(() => {
     if (!searchInput) return
@@ -25,8 +24,8 @@ const SearchBar = () => {
 
     if (!searchInput) return
     getMoviesApi({
-      page : 1,
-      text : searchInput
+      text: searchInput,
+      page: pageNum,
     }).then((res) => {
       setData(res)
     })
@@ -39,34 +38,29 @@ const SearchBar = () => {
     setSearchInput('')
   }
 
-
   return (
     <div className={styles.searchWrap}>
-      <form id="searchFrm" name="searchFrm" onSubmit={handleSubmit}>
-        <button type="submit" className={cx(styles.searchBtn, styles.search)}>
+      <form id='searchFrm' name='searchFrm' onSubmit={handleSubmit}>
+        <button type='submit' className={cx(styles.searchBtn, styles.search)}>
           <SearchIcon className={styles.icon}>Search </SearchIcon>
         </button>
-        <label 
-          htmlFor="keyword" 
-          className={styles.hidden}>Enter a Search movies
+        <label htmlFor='keyword' className={styles.hidden}>
+          Enter a Search movies
         </label>
-        <input 
-          type="text" 
-          id="keyword" 
-          onChange={handleInputChange} 
-          value={searchInput} 
-          placeholder="Search..." 
-          autoComplete="nope"
+        <input
+          type='text'
+          id='keyword'
+          onChange={handleInputChange}
+          value={searchInput}
+          placeholder='Search...'
+          autoComplete='nope'
         />
-        {
-          searchInput === '' ? null : <button 
-            type="button" 
-            className={cx(styles.searchBtn, styles.reset)} 
-            onClick={handleInputRemove}
-          ><SearchReset className={styles.icon}>Search Reset</SearchReset></button>
-        }
+        {searchInput === '' ? null : (
+          <button type='button' className={cx(styles.searchBtn, styles.reset)} onClick={handleInputRemove}>
+            <SearchReset className={styles.icon}>Search Reset</SearchReset>
+          </button>
+        )}
       </form>
-      {/* <div>{data ? data.Search.Title : 'Search Item'}</div> */}
     </div>
   )
 }
