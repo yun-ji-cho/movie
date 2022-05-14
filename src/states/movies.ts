@@ -10,6 +10,10 @@ export const pageState = atom({
   key: 'pageState',
   default: 1,
 })
+export const modalState = atom({
+  key: 'modalState',
+  default: false,
+})
 
 export const movieList = selector({
   key: 'movieList',

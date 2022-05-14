@@ -5,10 +5,13 @@
   }
 
   .item {
-    display: flex;
-
     +.item {
       padding-top: 10px;
+    }
+
+    button {
+      display: flex;
+      text-align: left;
     }
 
     .image {
