@@ -1,14 +1,14 @@
 export interface ISearch {
-  title: string
-  year: string
+  Title: string
+  Year: string
   imdbID: string
-  type: string
-  poster: string
+  Type: string
+  Poster: string
 }
 
 export interface IMoviesAPIRes {
   error?: string
-  search: ISearch[]
-  totalResults: number
-  response: Boolean
+  Search: ISearch[]
+  totalResults: string
+  Response: string
 }

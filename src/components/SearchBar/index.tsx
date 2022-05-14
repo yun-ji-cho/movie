@@ -1,41 +1,29 @@
 import { ChangeEvent, FormEvent } from 'react'
 import { useSearchParams } from 'react-router-dom'
 import styles from './SearchBar.module.scss'
-
-import { useMount, useState } from 'hooks'
-import { getMoviesApi } from 'services/movies'
-import { IMoviesAPIRes } from 'types/movies.d'
+import { useRecoilState } from 'recoil'
+import { useState } from 'hooks'
 import { SearchIcon, SearchReset } from 'assets/svgs'
 import { cx } from 'styles'
+import { keywordState } from 'states/movies'
 
 const SearchBar = () => {
   const [searchParams] = useSearchParams()
-  const [data, setData] = useState<IMoviesAPIRes>()
-  const [searchInput, setSearchInput] = useState(searchParams.get('title') ?? '')
-  const [pageNum, setPageNum] = useState(1)
+  const [value, setvalue] = useState(searchParams.get('title') ?? '')
+  const [, setKeyword] = useRecoilState(keywordState)
 
-  useMount(() => {
-    if (!searchInput) return
-    handleSubmit()
-  })
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setvalue(e.target.value)
+  }
+  const handleInputRemove = () => {
+    setvalue('')
+  }
 
   const handleSubmit = (e?: FormEvent<HTMLFormElement>) => {
     e?.preventDefault()
 
-    if (!searchInput) return
-    getMoviesApi({
-      text: searchInput,
-      page: pageNum,
-    }).then((res) => {
-      setData(res)
-    })
-  }
-
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setSearchInput(e.target.value)
-  }
-  const handleInputRemove = () => {
-    setSearchInput('')
+    if (!value) return
+    setKeyword(value)
   }
 
   return (
@@ -51,11 +39,11 @@ const SearchBar = () => {
           type='text'
           id='keyword'
           onChange={handleInputChange}
-          value={searchInput}
+          value={value}
           placeholder='Search...'
           autoComplete='nope'
         />
-        {searchInput === '' ? null : (
+        {value === '' ? null : (
           <button type='button' className={cx(styles.searchBtn, styles.reset)} onClick={handleInputRemove}>
             <SearchReset className={styles.icon}>Search Reset</SearchReset>
           </button>

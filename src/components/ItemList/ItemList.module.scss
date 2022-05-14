@@ -1,0 +1,31 @@
+.scrollView {
+  .searchList {
+    max-height: 50vh;
+    overflow-y: auto;
+  }
+
+  .item {
+    display: flex;
+
+    +.item {
+      padding-top: 10px;
+    }
+
+    .image {
+      width: 40%;
+
+      img {
+        width: 100%;
+      }
+    }
+
+    .info {
+      flex: 1;
+      padding-left: 5%;
+
+      .title {
+        font-size: 20px;
+      }
+    }
+  }
+}
