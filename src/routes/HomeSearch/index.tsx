@@ -9,7 +9,7 @@ const HomeSearch = () => {
       <h2>좋아하는 영화를 검색해보세요!</h2>
       <SearchBar />
       <Suspense fallback={<div>Loading...</div>}>
-        <ItemList />
+        <ItemList pagename='searchPage' />
       </Suspense>
     </div>
   )

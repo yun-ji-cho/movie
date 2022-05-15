@@ -1,46 +1,52 @@
-# Getting Started with Create React App
+# 원티드 프리온보딩 그립 컴퍼니 사전과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 구현 내용
+  ### 1. 하단 탭 바 (검색, 즐겨찾기) 구현
+  src/routes/index.jsx
+  React routes를 이용하여 해당탭의 페이지가 나오도록 구현했습니다.
 
-## Available Scripts
+  ### 2. 검색화면 구현
+  검색 전에는 검색어가 없음을 나타내는 문구를 노출시키고
+  검색이 이루어지면 검색한 단어로 api를 조회하여 화면에 띄웠습니다.
 
-In the project directory, you can run:
+  검색한 단어를 리코일의 atom 함수를 이용해서 담았고
+  (src/states/movies.ts)
 
-### `yarn start`
+  그 단어를 selector 함수를 사용해서 구독하여 제출된 검색어가 변경될 때마다 api를 호출하였습니다.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+  이때, page도 atoms로 만들었습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+  API키는 보안이 유지되어야 하는 값이기 때문에 .env 에 담아서 가져왔습니다.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+  ### 3. 무한스크롤 구현
+  검색화면을 최하단으로 내렸을 때, 페이지가 자동으로 넘어가는 무한스크롤을 만들기 위해서 react-intersection-observer 라이브러리를 이용했습니다.
+  useInView() 라는 함수를 사용해서 ref(관찰 대상) 을 보여줄 아이템들의 가장 하단에 위치한 요소에 지정해 주면 되고,
+  useEffect 안쪽에 if(invue){ } 를 넣어서 교차점을 지날때 실행할 함수를 안쪽에 넣어주면 됩니다. 무한 스크롤을 구현해야 했기때문에 교차점을 지나갈 때마다 page를 증가시켜 주었습니다. 
+  
+  여기서 구현 못한 것은 스크롤 업 될때 예전 페이지로 돌아갈 수 없다는 것입니다.
 
-### `yarn build`
+  제가 페이지를 증가시키기만 했지 올라갔을때 페이지를 감소시키는 코드를 어디다 넣어야 할지 몰랐기 떄문입니다.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+  아무래도 끝까지 스크롤 될때마다 페이지가 증가하면서 보여지는 데이터가 쌓여져야 하는 구조로 했어야 했는데 그 부분은 구현이 어려웠습니다.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+  ### 4. 클릭한 영화 로컬에 저장하기
+  검색어를 입력해 띄운 영화를 클릭했을 때 모달을 띄우고 즐겨찾기 추가를 누르면 로컬스토리지에 업데이트 되도록 했습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  그런데 화면에 띄우는 것에서 이슈가 있었는데, 검색시 보여지는 아이템과 즐겨찾기 해둔 아이템의 형태가 같다고 명시되어있어서 그렇게 구현하기 위해 페이지를 구분하여 데이터를 getData에 조건문으로 분리에서 띄워주려고 했었습니다.
 
-### `yarn eject`
+  그런데 두 데이터의 형태가 일치 하지 않아서 그런지 계속 타입에러가 나서 해결을 하지 못했고, 담아지는 데이터는 일단 콘솔에 띄워지도록 처리를 해놨습니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+  ### 5. 느낀점
+  화면에 데이터들을 띄우는 과정에서 너무 시간을 많이 써서
+  구현하지 못한 기능이 너무 많아서 아쉬웠습니다.
+  그리고 리액트에다가 타입스크립트 + 린트를 적용해서 코드를 짜는게 쉽지 않았습니다. 실력이 보족해서 아쉬움이 많이 남는 프로젝트였습니다.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
+  
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+
+  

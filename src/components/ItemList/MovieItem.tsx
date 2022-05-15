@@ -14,7 +14,6 @@ const MovieItem = ({ item }: Props) => {
   const handleModal = () => {
     setModal(true)
     setItemInfo([{ item }, ...itemInfo])
-    console.log('itemInfo', itemInfo)
   }
 
   return (
