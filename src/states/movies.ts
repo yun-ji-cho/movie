@@ -14,7 +14,10 @@ export const modalState = atom({
   key: 'modalState',
   default: false,
 })
-
+export const itemInfoState = atom({
+  key: 'itemInfoState',
+  default: [{}],
+})
 export const movieList = selector({
   key: 'movieList',
   get: async ({ get }) => {

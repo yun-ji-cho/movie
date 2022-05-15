@@ -1,11 +1,10 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect } from 'react'
 import styles from './ItemList.module.scss'
 import { useRecoilValue, useRecoilState } from 'recoil'
 import { useInView } from 'react-intersection-observer'
 import MovieItem from './MovieItem'
 import { pageState, movieList } from 'states/movies'
 import { ISearch } from 'types/movies.d'
-// import React from 'react'
 
 const ItemList = () => {
   console.log(useRecoilValue(movieList))

@@ -1,7 +1,7 @@
 import styles from './ItemList.module.scss'
 import { ISearch } from 'types/movies.d'
 import { useRecoilState } from 'recoil'
-import { modalState } from 'states/movies'
+import { modalState, itemInfoState } from 'states/movies'
 
 interface Props {
   item: ISearch
@@ -10,8 +10,11 @@ interface Props {
 const MovieItem = ({ item }: Props) => {
   const { Title, Year, Type, Poster } = item
   const [, setModal] = useRecoilState(modalState)
+  const [itemInfo, setItemInfo] = useRecoilState(itemInfoState)
   const handleModal = () => {
     setModal(true)
+    setItemInfo([{ item }, ...itemInfo])
+    console.log('itemInfo', itemInfo)
   }
 
   return (

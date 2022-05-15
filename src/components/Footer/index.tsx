@@ -1,10 +1,6 @@
-import { useMount, useState } from 'hooks'
 import styles from './Footer.module.scss'
-import { Link, NavLink, useParams } from 'react-router-dom'
-
-import HomeSearch from 'routes/HomeSearch'
+import { NavLink, useParams } from 'react-router-dom'
 import Favorite from 'routes/Favorite'
-import { LikeIcon, SearchIcon } from 'assets/svgs'
 import { cx } from 'styles'
 
 const Footer = () => {
